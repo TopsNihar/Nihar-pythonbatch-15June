@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+int main() {
+   char package[15],bussiness[15],economy;
+   int age,kg,distance;
+   double tcprice;
+   
+   printf("enter your age: ");
+   scanf("%d",&age);
+   
+   printf("enter your lagguage kgs: ");
+   scanf("%d",&kg);
+   
+   printf("choise a ticket class as your comfort\n ");
+   printf("bussiness\n");
+   printf(" economy:\n");
+   printf("enter your choise:");
+   scanf("%s",&package);
+   
+   printf("enter your distance: ");
+   scanf("%d",&distance);
+   
+   if(distance<100){
+      tcprice=5*distance; 
+   }
+   else if(distance>100 && distance<=125){
+       tcprice=4.5*distance;
+   }
+   else if (distance>125 && distance<=200){
+       tcprice=3.5*distance;
+   }
+   else{
+      tcprice=2*distance;
+   }
+   
+   if(kg<=20){
+       tcprice+=10;
+   }
+   else if(kg>20 && kg<=40){
+       tcprice+=100;
+   }
+   else if(kg>40 && kg<=60){
+       tcprice+=150;
+   }
+   else{
+       tcprice+=200;
+   }
+   
+   
+   if(age>=65){
+       tcprice*=0.90;
+   }
+   
+   
+  if(package==bussiness){
+       tcprice*=1.9;
+   }
+   else{
+       tcprice*=1.1;
+   }
+   
+   printf("your total ticket price is :inr %.2f\n:",tcprice);
+   
+    return 0;
+}
