@@ -1,25 +1,15 @@
-#include <stdio.h>
+#include<stdio.h>
+int main(){
+    int n ,i;
+    int factorial =1;
 
-int main() {
-    int num, abc_num , digit ,sum = 0;
+    printf("enter factorial number ");
+    scanf("%d",&n);
 
-    printf("enter number: ");
-    scanf("%d", &num);
-
-    abc_num = num < 0 ? -num : num;
-
-    while (abc_num > 0) {
-        digit = abc_num % 10; 
-        sum += digit; 
-        abc_num /= 10; 
+    for(i=1;i<=n;i++)
+    {
+    factorial = factorial * i;
     }
-
-    if (num < 0) {
-        sum = -sum;
-    }
-
-    printf("sum of num: %d\n", sum);
-
+  printf("factoril number is %d",factorial);
     
-
 }
