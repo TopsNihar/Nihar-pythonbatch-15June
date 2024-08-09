@@ -1,0 +1,318 @@
+1]
+#include <iostream>
+using namespace std;
+
+int main() {
+   
+   cout<<"hello word";
+
+    return 0;
+}
+
+
+2]
+ Object-Oriented Programming (OOP) is a programming paradigm based on objects that combine data and methods.
+ The key concepts are:
+
+1.Class: Blueprint for creating objects.
+2.Object: Instance of a class.
+3.Encapsulation: Bundling data and methods; hiding internal details.
+4.Inheritance: Deriving new classes from existing ones.
+5.Polymorphism: Same operation in different ways.
+6.Abstraction: Simplifying complex systems by focusing on essential aspects.
+
+
+3]
+ Object-Oriented Programming (OOP) and Procedure-Oriented Programming (POP) are two different programming 
+paradigms:
+
+- OOPS:
+  - Focuses on objects that combine data and methods.
+  - Emphasizes encapsulation, inheritance, and polymorphism.
+  - Aims for modularity, reusability, and maintainability.
+
+- POP:
+  - Focuses on procedures or functions that operate on data.
+  - Organizes code into routines or functions.
+  - Aims for a linear and procedural flow of control.
+
+
+----------------------------------------------------------------------------------------------------------------
+
+1]
+  #include <iostream>
+using namespace std;
+
+class Calculator {
+public:
+    int add(int a, int b) {
+        return a + b;
+    }
+    
+    int subtract(int a, int b) {
+        return a - b;
+    }
+    
+    int multiply(int a, int b) {
+        return a * b;
+    }
+    
+    int divide(int a, int b) {
+        if (b != 0) {
+            return a / b;
+        } else {
+            cout << "error: division by zero!" << endl;
+            return 0; 
+        }
+    }
+};
+
+int main() {
+    Calculator calc;
+    int num1, num2;
+    char sign;
+
+    cout << "enter first number: ";
+    cin >> num1;
+    cout << "enter operator (+, -, *, /): ";
+    cin >> sign;
+    cout << "enter second number: ";
+    cin >> num2;
+
+    switch(sign) {
+        case '+':
+            cout << "result: " << calc.add(num1, num2) << endl;
+            break;
+        case '-':
+            cout << "result: " << calc.subtract(num1, num2) << endl;
+            break;
+        case '*':
+            cout << "result: " << calc.multiply(num1, num2) << endl;
+            break;
+        case '/':
+            cout << "result: " << calc.divide(num1, num2) << endl;
+            break;
+        default:
+            cout << "error: invalid operator!" << endl;
+            break;
+    }
+
+    return 0;
+}
+
+
+2]
+ #include <iostream>
+#include <string>
+using namespace std;
+
+class BankAccount {
+private:
+    string accountnumber;
+    string accountholder;
+    int balance;
+
+public:
+    BankAccount(string accnum, string accholder, int initialbalance) {
+        accountnumber = accnum;
+        accountholder = accholder;
+        balance = initialbalance;
+    }
+
+    void deposit(int amount) {
+        if (amount > 0) {
+            balance += amount;
+            cout << "deposited: $" << amount << endl;
+        } else {
+            cout << "invalid deposit amount!" << endl;
+        }
+    }
+
+    void withdraw(int amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            cout << "withdrew: $" << amount << endl;
+        } else if (amount > balance) {
+            cout << "insufficient funds!" << endl;
+        } else {
+            cout << "invalid withdrawal amount!" << endl;
+        }
+    }
+
+    void checkbalance() {
+        cout << "account balance: $" << balance << endl;
+    }
+
+    void displayaccountdetails() {
+        cout << "account number: " << accountnumber << endl;
+        cout << "account holder: " << accountholder << endl;
+        checkbalance();
+    }
+};
+
+int main() {
+    BankAccount myAccount("123456789", "nihar nakrani", 1000.0);
+
+    myAccount.displayaccountdetails();
+
+    myAccount.deposit(500.0);
+
+    myAccount.withdraw(200.0);
+
+    myAccount.checkbalance();
+
+    return 0;
+}
+
+
+3]
+ #include <iostream>
+#include <cmath> 
+using namespace std;
+
+class Circle {
+private:
+    int radius; 
+
+public:
+    Circle(int r) : radius(r) {}
+
+    void setradius(int r) {
+        if (r > 0) {
+            radius = r;
+        } else {
+            cout << "radius must be positive!" << endl;
+        }
+    }
+
+    int getradius() {
+        return radius;
+    }
+
+    int calculatearea() {
+        return M_PI * radius * radius;
+    }
+
+    int calculatecircumference() {
+        return 2 * M_PI * radius;
+    }
+};
+
+int main() {
+    int radius;
+    
+    cout << "enter the area of the circle: ";
+    cin >> radius;
+
+    Circle myCircle(radius);
+
+    cout << "radius: " << myCircle.getradius() << endl;
+    cout << "area: " << myCircle.calculatearea() << endl;
+    cout << "circumference: " << myCircle.calculatecircumference() << endl;
+
+    return 0;
+}
+
+
+4]
+ #include <iostream>
+using namespace std;
+
+class Rectangle {
+private:
+    int length; 
+    int width;  
+
+public:
+    Rectangle(int l, int w) : length(l), width(w) {}
+
+    void set_dimensions(int l, int w) {
+        if (l > 0 && w > 0) {
+            length = l;
+            width = w;
+        } else {
+            cout << "length and width must be positive!" << endl;
+        }
+    }
+
+    int get_length() {
+        return length;
+    }
+
+    int get_width() {
+        return width;
+    }
+
+    int calculate_area() {
+        return length * width;
+    }
+
+    int calculate_perimeter() {
+        return 2 * (length + width);
+    }
+};
+
+int main() {
+    int length, width;
+    
+    cout << "enter the length of the rectangle: ";
+    cin >> length;
+    cout << "enter the width of the rectangle: ";
+    cin >> width;
+
+    Rectangle myRectangle(length, width);
+
+    cout << "length: " << myRectangle.get_length() << endl;
+    cout << "width: " << myRectangle.get_width() << endl;
+    cout << "area: " << myRectangle.calculate_area() << endl;
+    cout << "perimeter: " << myRectangle.calculate_perimeter() << endl;
+
+    return 0;
+}
+
+5]
+ #include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+private:
+    string name;
+    int age;
+    string country;
+
+public:
+    void setValues(string person_name, int person_age, string person_country) {
+        name = person_name;
+        age = person_age;
+        country = person_country;
+    }
+
+    string get_name() {
+        return name;
+    }
+
+    int get_age() {
+        return age;
+    }
+
+    string get_country() {
+        return country;
+    }
+};
+
+int main() {
+    Person person;
+
+    person.setValues("nihar", 19, "india");
+
+    cout << "name: " << person.get_name() << endl;
+    cout << "age: " << person.get_age() << endl;
+    cout << "country: " << person.get_country() << endl;
+
+    return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+1]
