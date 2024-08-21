@@ -1,41 +1,25 @@
 #include <stdio.h>
-#include <ctype.h> 
+#include <ctype.h>
 
-int countWords(char str[])
-{
-    int wordCount = 0;
-    int i = 0;
+int main() {
+    char str[100];
+    int i, word_count = 0;
+    int word = 0;
+    printf("enter a string: ");
+    fgets(str, sizeof(str), stdin);
 
-    while (str[i] != '\0')
-    {
-
-        while (isspace(str[i]))
-        {
-            i++;
-        }
-
-        if (str[i] != '\0')
-        {
-            wordCount++;
-        }
-
-        while (str[i] != '\0' && !isspace(str[i]))
-        {
-            i++;
+    for (i = 0; str[i] != '\0'; i++) {
+        if (isspace(str[i])) {
+            word = 0;
+        } else {
+            if (word == 0) {
+                word_count++;
+                word = 1; 
+            }
         }
     }
 
-    return wordCount;
-}
+    printf("total number of words: %d\n", word_count);
 
-int main()
-{
-    char str[100]; 
-
-    printf("Enter a string: ");
-    scanf("%[^\n]", str); 
-
-    int numWords = countWords(str);
-    printf("Total number of words: %d\n", numWords);
-
+    return 0;
 }

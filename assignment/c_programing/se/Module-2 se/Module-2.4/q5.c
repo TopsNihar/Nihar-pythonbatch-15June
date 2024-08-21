@@ -1,35 +1,46 @@
-#include<stdio.h>
+#include <stdio.h>
 
-int cstring(char str1[],char str2[]){
+int compare_strings(const char *str1, const char *str2) {
+    while (*str1 != '\0' && *str2 != '\0') {
+        if (*str1 != *str2) {
+            return 0; 
+        }
+        str1++;
+        str2++;
+    }
+
+    return (*str1 == '\0' && *str2 == '\0');
+}
+
+void remove_new_line(char *str) {
     int i = 0;
-
-    while(str1[i] != '\0' ||str2[i] != '\0'){
-        if(str1[i] != str2[i]){
-         return   str1[i] - str2[i];
+    while (str[i] != '\0') {
+        if (str[i] == '\n') {
+            str[i] = '\0';
+            break;
         }
         i++;
     }
-    return 0;
 }
 
-    int main(){
-        char str1[100], str2[100];
+int main() {
+    char str1[100], str2[100];
 
-        printf("enter string 1 value :");
-        scanf(" %[^\n]", str1);
+    printf("enter the first string: ");
+    fgets(str1, sizeof(str1), stdin);
+   
+    remove_new_line(str1);
 
-        printf("enter string 2 value :");
-        scanf(" %[^\n]", str2);
+    printf("enter the second string: ");
+    fgets(str2, sizeof(str2), stdin);
+  
+    remove_new_line(str2);
 
-        int result = cstring(str1,str2);
-
-        if(result == 0){
-            printf("string is same");
-        }
-        else if(result<0){
-            printf("first string smaller than secomd string ");
-        }
-        else{
-            printf("second string is smaller than first string");
-        }
+    if (compare_strings(str1, str2)) {
+        printf("the strings are equal.\n");
+    } else {
+        printf("the strings are not equal.\n");
     }
+
+    return 0;
+}
