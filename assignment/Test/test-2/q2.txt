@@ -1,0 +1,6 @@
+2] What is the output of the following code?
+int x = 3;
+int y = x++;
+printf("%d %d\n", x, y);
+
+d) 3 4

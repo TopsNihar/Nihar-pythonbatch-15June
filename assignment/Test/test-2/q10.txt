@@ -1,0 +1,1 @@
+10] Write a function in C that takes an integer and returns its square.

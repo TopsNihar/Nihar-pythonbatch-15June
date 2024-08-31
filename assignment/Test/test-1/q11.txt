@@ -1,0 +1,12 @@
+**11]Explain the difference between ++x and x++ in C with an example.
+
+#include<stdio.h>
+int main(){
+	int a,b,x=5;
+	a=++x;
+	x=5;
+	b=x++;
+	
+	printf("b is : %d",b);
+	printf("a is : %d:,a);
+}

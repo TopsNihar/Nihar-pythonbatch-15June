@@ -1,0 +1,2 @@
+5] What is the purpose of the return statement in a function?
+->c) To send a value back to the calling function

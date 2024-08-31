@@ -1,0 +1,2 @@
+9] How can you define a constant variable in C?
+a) const int x = 10;

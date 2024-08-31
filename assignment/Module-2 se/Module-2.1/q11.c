@@ -1,15 +1,10 @@
 #include <stdio.h>
 
 int main() {
-    float length;
-    float circumference;
-
-    printf("enter the length of one side of the square: ");
-    scanf("%f", &length);
-
-    circumference = 4 * length;
-
-    printf("The circumference of the square is: %.2f\n", circumference);
-
+ int num;
+ printf("enter the number which is you cheak: ");
+ scanf("%d",&num);
+ 
+ (num % 2 == 0)?printf("number is even",num):printf("number is odd",num);
     return 0;
 }

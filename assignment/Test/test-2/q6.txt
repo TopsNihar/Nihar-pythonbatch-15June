@@ -1,0 +1,3 @@
+6] Which of the following is a valid format specifier for printing a float in C?
+
+b) %f

@@ -1,0 +1,33 @@
+17] Create a function in C that checks if a given string is a
+palindrome.
+
+#include<stdio.h>
+#include<string.h>
+int palindrom(char str[]){
+	int start = 0;
+	int end = strlen(str)-1;
+	
+	while(start<end){
+		if(str[start] != str[end]){
+			return 0;
+		
+		start++;
+		end--;
+	}
+	return 1;
+}
+}
+int main(){
+	char str[100];
+	printf("enter string :");
+	fgets(str,sizeof(str),stdin);
+	
+	str[strcspn(str, "\n")] = '\0';
+	
+	if(palindrom(str)){
+	printf("string is palindrome");
+    }
+    else{
+    	printf("string is not palindrome");
+    }
+}

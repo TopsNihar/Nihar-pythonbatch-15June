@@ -1,0 +1,2 @@
+1] What is a token in C?
+->b) A type of variable

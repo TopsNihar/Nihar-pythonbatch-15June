@@ -1,0 +1,2 @@
+3]Which of the following is a correct usage of the && operator in C?
+-> a) if (a && b)

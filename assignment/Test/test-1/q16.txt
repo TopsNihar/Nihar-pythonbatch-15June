@@ -1,0 +1,34 @@
+16] Write a C program to find the largest element in an array of
+integers. in easy and basic way
+->
+#include <stdio.h>
+
+int main() {
+    int n,i,large; 
+    int array[100];
+    
+    printf("enter the number 0 to 100: ");
+    scanf("%d", &n);
+
+    if (n <= 0 || n > 100) {
+        printf("invalid number of elements.\n");
+        return 1; 
+    }
+
+    printf("enter %d integers:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &array[i]);
+    }
+
+    large = array[0];
+
+    for (i = 1; i < n; i++) {
+        if (array[i] > large) {
+            large = array[i];
+        }
+    }
+
+    printf("the large element in the array is: %d\n", large);
+
+    return 0; 
+}

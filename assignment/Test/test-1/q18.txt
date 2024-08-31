@@ -1,0 +1,23 @@
+18] Write a C program to implement a simple calculator using
+switch-case statements that performs addition, subtraction,
+multiplication, and division.
+->
+#include <stdio.h>
+
+int main() {
+    int num,og_num, revers = 0, remainder;
+
+    printf("enter an integer number: ");
+    scanf("%d", &num);
+
+    og_num = num;
+
+    while (num != 0) {
+        remainder = num % 10;      
+        revers = revers * 10 + remainder;
+        num = num / 10;          
+    }
+    printf("the reverse of %d is %d\n", og_num, revers);
+
+    return 0;
+}

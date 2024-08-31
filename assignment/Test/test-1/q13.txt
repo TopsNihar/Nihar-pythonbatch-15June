@@ -1,0 +1,45 @@
+13] Write a program in C that reverses a given string without using
+any built-in functions.
+
+#include <stdio.h>
+
+void reverse(char str[]) {
+    int start = 0;
+    int end = 0;
+    char temp;
+
+    while (str[end] != '\0') {
+        end++;
+    }
+    end--; 
+    
+    while (start < end) {
+        temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+int main() {
+    char str[10];
+    
+    printf("enter string: ");
+    fgets(str, sizeof(str), stdin);
+
+    int i = 0;
+    while (str[i] != '\0') {
+        if (str[i] == '\n') {
+            str[i] = '\0'; 
+            break;
+        }
+        i++;
+    }
+
+    reverse(str);
+
+    printf("reversed is this: %s\n", str);
+
+    return 0;
+}

@@ -1,0 +1,31 @@
+19] Develop a C program that reverses the digits of an integer number
+entered by the user.
+->
+#include <stdio.h>
+
+int main() {
+    int num, revers = 0, remainder;
+
+    printf("enter an integer number: ");
+    scanf("%d", &num);
+
+    int negative = 0;
+    if (num < 0) {
+        negative = 1;
+        num = -num; 
+    }
+
+    while (num != 0) {
+        remainder = num % 10;     
+        revers = revers * 10 + remainder; 
+        num = num / 10;           
+    }
+
+    if (negative) {
+        revers = -revers;
+    }
+
+    printf("The reverse of the number is: %d\n", revers);
+
+    return 0;
+}
