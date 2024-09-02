@@ -1,1 +1,16 @@
 10] Write a function in C that takes an integer and returns its square.
+
+#include <stdio.h>
+
+int square(int num) {
+    return num * num;
+}
+
+int main() {
+    int number;
+    printf("enter the num:");
+    scanf("%d",&number);
+    int result = square(number);
+    printf("the square of %d is %d\n", number, result);
+    return 0;
+}
