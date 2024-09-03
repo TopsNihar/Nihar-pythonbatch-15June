@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main() {
+   int f,c;
+   
+   printf("enter the Celsius :");
+   scanf("%d",&c);
+   
+   f=(c*9/5)+32;
+   
+   printf("Fahrenheit is %d",f);
+   
+
+    return 0;
+}
