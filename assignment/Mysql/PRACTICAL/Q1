@@ -1,0 +1,55 @@
+USE STUD;
+ 
+CREATE TABLE STUDENT(
+    ->   ROLL_NO INT PRIMARY KEY,
+    ->   NAME VARCHAR(50),
+    ->   BRANCH VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> CREATE TABLE EXAM (
+    ->   s_code VARCHAR(10),
+    ->   MARKS INT,
+    ->   P_CODE VARCHAR(10),
+    ->   ROLL_NO INT,
+    ->   FOREIGN KEY (ROLL_NO) REFERENCES STUDENT(ROLL_NO)
+    -> );
+
+
+mysql>
+mysql> INSERT INTO STUDENT(ROLL_NO, NAME, BRANCH) VALUES
+    -> (1, 'JAY', 'COMPUTER SCI'),
+    -> (2, 'SUHANI', 'ELECTRIC AND COMP'),
+    -> (3, 'KRITI', 'ELECTRIC AND COMP');
+
+mysql> INSERT INTO EXAM(ROLL_NO, s_code , MARKS ,P_CODE) VALUES
+    -> (1 ,'CS11' , '50' , 'CS'),
+    -> (1 ,'CS12' , '60' , 'CS'),
+    -> (2 ,'EC101' , '70' , 'EC'),
+    -> (2 ,'EC102' , '66' , 'EC'),
+    -> (3 ,'EC101' , '45' , 'EC'),
+    -> (3 ,'EC102' , '50' , 'EC');
+
+mysql> SELECT * FROM STUDENT;
++---------+--------+-------------------+
+| ROLL_NO | NAME   | BRANCH            |
++---------+--------+-------------------+
+|       1 | JAY    | COMPUTER SCI      |
+|       2 | SUHANI | ELECTRIC AND COMP |
+|       3 | KRITI  | ELECTRIC AND COMP |
++---------+--------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EXAM;
++--------+-------+--------+---------+
+| s_code | MARKS | P_CODE | ROLL_NO |
++--------+-------+--------+---------+
+| CS11   |    50 | CS     |       1 |
+| CS12   |    60 | CS     |       1 |
+| EC101  |    70 | EC     |       2 |
+| EC102  |    66 | EC     |       2 |
+| EC101  |    45 | EC     |       3 |
+| EC102  |    50 | EC     |       3 |
++--------+-------+--------+---------+
+

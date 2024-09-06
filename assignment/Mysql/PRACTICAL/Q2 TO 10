@@ -1,0 +1,183 @@
+USE EMPL;
+
+CREATE TABLE Employee(
+    Employee_id INT PRIMARY KEY,
+    First_name VARCHAR(50),
+    Last_name VARCHAR(50),
+    Salary INT,
+    Joining_date date,
+    Department VARCHAR(50)
+);
+
+CREATE TABLE Incentive (
+    Employee_ref_id INT,
+    Incentive_amount INT,
+    Incentive_date DATE,
+    FOREIGN KEY (Employee_ref_id) REFERENCES Employee(Employee_id)
+);
+
+INSERT INTO Employee (Employee_id, First_name, Last_name, Salary, Joining_date, Department) 
+VALUES 
+(1, 'John', 'Abraham', 1000000, '2013-01-01', 'Banking'),
+(2, 'Michael', 'Clarke', 800000, '2013-01-01', 'Insurance'),
+(3, 'Roy', 'Thomas', 700000, '2013-02-01', 'Banking'),
+(4, 'Tom', 'Jose', 600000, '2013-02-01', 'Insurance'),
+(5, 'Jerry', 'Pinto', 650000, '2013-02-01', 'Insurance'),
+(6, 'Philip', 'Mathew', 750000, '2013-01-01', 'Services'),
+(7, 'TestName1', '123', 650000, '2013-01-01 ', 'Services'),
+(8, 'TestName2', 'Lname%', 600000, '2013-02-01', 'Insurance');
+
+INSERT INTO Incentive (Employee_ref_id, Incentive_amount, Incentive_date) 
+VALUES 
+(1, 5000, '2013-02-01'),
+(2, 3000, '2013-02-01'),
+(3, 4000, '2013-02-01'),
+(1, 4500, '2013-01-01'),
+(2, 3500, '2013-01-01');
+
+
+SELECT * FROM empl.employee;
++-------------+------------+-----------+---------+--------------+------------+
+| Employee_id | First_name | Last_name | Salary  | Joining_date | Department |
++-------------+------------+-----------+---------+--------------+------------+
+|           1 | John       | Abraham   | 1000000 | 2013-01-01   | Banking    |
+|           2 | Michael    | Clarke    |  800000 | 2013-01-01   | Insurance  |
+|           3 | Roy        | Thomas    |  700000 | 2013-02-01   | Banking    |
+|           4 | Tom        | Jose      |  600000 | 2013-02-01   | Insurance  |
+|           5 | Jerry      | Pinto     |  650000 | 2013-02-01   | Insurance  |
+|           6 | Philip     | Mathew    |  750000 | 2013-01-01   | Services   |
+|           7 | TestName1  | 123       |  650000 | 2013-01-01   | Services   |
+|           8 | TestName2  | Lname%    |  600000 | 2013-02-01   | Insurance  |
++-------------+------------+-----------+---------+--------------+------------+
+
+
+SELECT * FROM empl.incentive;
++-----------------+------------------+----------------+
+| Employee_ref_id | Incentive_amount | Incentive_date |
++-----------------+------------------+----------------+
+|               1 |             5000 | 2013-02-01     |
+|               2 |             3000 | 2013-02-01     |
+|               3 |             4000 | 2013-02-01     |
+|               1 |             4500 | 2013-01-01     |
+|               2 |             3500 | 2013-01-01     |
++-----------------+------------------+----------------+
+
+ SELECT First_name
+    -> FROM Employee
+    -> WHERE First_name = 'Tom';
++------------+
+| First_name |
++------------+
+| Tom        |
++------------+
+
+
+ SELECT First_name, Joining_date, Salary
+    -> FROM Employee;
++------------+--------------+---------+
+| First_name | Joining_date | Salary  |
++------------+--------------+---------+
+| John       | 2013-01-01   | 1000000 |
+| Michael    | 2013-01-01   |  800000 |
+| Roy        | 2013-02-01   |  700000 |
+| Tom        | 2013-02-01   |  600000 |
+| Jerry      | 2013-02-01   |  650000 |
+| Philip     | 2013-01-01   |  750000 |
+| TestName1  | 2013-01-01   |  650000 |
+| TestName2  | 2013-02-01   |  600000 |
++------------+--------------+---------+
+
+SELECT *
+    -> FROM Employee
+    -> ORDER BY First_name;
++-------------+------------+-----------+---------+--------------+------------+
+| Employee_id | First_name | Last_name | Salary  | Joining_date | Department |
++-------------+------------+-----------+---------+--------------+------------+
+|           5 | Jerry      | Pinto     |  650000 | 2013-02-01   | Insurance  |
+|           1 | John       | Abraham   | 1000000 | 2013-01-01   | Banking    |
+|           2 | Michael    | Clarke    |  800000 | 2013-01-01   | Insurance  |
+|           6 | Philip     | Mathew    |  750000 | 2013-01-01   | Services   |
+|           3 | Roy        | Thomas    |  700000 | 2013-02-01   | Banking    |
+|           7 | TestName1  | 123       |  650000 | 2013-01-01   | Services   |
+|           8 | TestName2  | Lname%    |  600000 | 2013-02-01   | Insurance  |
+|           4 | Tom        | Jose      |  600000 | 2013-02-01   | Insurance  |
++-------------+------------+-----------+---------+--------------+------------+
+
+
+ SELECT *
+    -> FROM Employee
+    -> WHERE First_name LIKE '%J%';
++-------------+------------+-----------+---------+--------------+------------+
+| Employee_id | First_name | Last_name | Salary  | Joining_date | Department |
++-------------+------------+-----------+---------+--------------+------------+
+|           1 | John       | Abraham   | 1000000 | 2013-01-01   | Banking    |
+|           5 | Jerry      | Pinto     |  650000 | 2013-02-01   | Insurance  |
++-------------+------------+-----------+---------+--------------+------------+
+
+
+SELECT Department, MAX(Salary) AS MaxSalary
+    -> FROM Employee
+    -> GROUP BY Department
+    -> ORDER BY MaxSalary DESC;
++------------+-----------+
+| Department | MaxSalary |
++------------+-----------+
+| Banking    |   1000000 |
+| Insurance  |    800000 |
+| Services   |    750000 |
++------------+-----------+
+
+ SELECT Department, MAX(Salary) AS MaxSalary
+    -> FROM Employee
+    -> GROUP BY Department
+    -> ORDER BY MaxSalary ASC;
++------------+-----------+
+| Department | MaxSalary |
++------------+-----------+
+| Services   |    750000 |
+| Insurance  |    800000 |
+| Banking    |   1000000 |
++------------+-----------+
+
+SELECT e.First_name, i.Incentive_amount
+    -> FROM Employee e
+    -> INNER JOIN Incentive i ON e.Employee_id = i.Employee_ref_id
+    -> WHERE i.Incentive_amount > 3000;
++------------+------------------+
+| First_name | Incentive_amount |
++------------+------------------+
+| John       |             5000 |
+| Roy        |             4000 |
+| John       |             4500 |
+| Michael    |             3500 |
++------------+------------------+
+
+ CREATE TABLE viewtable (
+    ->     Employee_id INT,
+    ->     First_name VARCHAR(50),
+    ->     Last_name VARCHAR(50),
+    ->     Salary INT,
+    ->     Joining_date DATE,
+    ->     Department VARCHAR(50)
+    -> );
+CREATE TRIGGER after_employee_insert
+    -> AFTER INSERT ON Employee
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO viewtable (Employee_id, First_name, Last_name, Salary, Joining_date, Department)
+    ->     VALUES (NEW.Employee_id, NEW.First_name, NEW.Last_name, NEW.Salary, NEW.Joining_date, NEW.Department);
+    -> END;
+    ->
+    -> //
+SHOW COLUMNS FROM viewtable;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Employee_id  | int         | YES  |     | NULL    |       |
+| First_name   | varchar(50) | YES  |     | NULL    |       |
+| Last_name    | varchar(50) | YES  |     | NULL    |       |
+| Salary       | int         | YES  |     | NULL    |       |
+| Joining_date | date        | YES  |     | NULL    |       |
+| Department   | varchar(50) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+

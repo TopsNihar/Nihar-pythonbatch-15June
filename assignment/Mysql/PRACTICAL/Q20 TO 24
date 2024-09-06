@@ -1,0 +1,112 @@
+create database item ;
+
+use item;
+
+create table item1(
+pro_id int primary key,
+pro_name varchar(50),
+pro_price decimal(10,2),
+pro_com int 
+);
+
+insert into item1 (pro_id,pro_name, pro_price,pro_com ) values
+(101, 'mother board' , 3200.00 , 15),
+(102, 'key board' , 450.00 , 16),
+(103, 'zip drive' , 250.00 , 14),
+(104, 'speaker' , 550.00 , 16),
+(105, 'monitor' , 5000.00 , 11),
+(106, 'dvd drive' , 900.00 , 12),
+(107, 'cd drive' , 800.00 , 12),
+(108, 'printer' , 2600.00 , 13),
+(109, 'refill cartridge' , 350.00 , 13),
+(110, 'mouse' , 250.00 , 12);
+
+select * from item1;
++--------+------------------+-----------+---------+
+| pro_id | pro_name         | pro_price | pro_com |
++--------+------------------+-----------+---------+
+|    101 | mother board     |   3200.00 |      15 |
+|    102 | key board        |    450.00 |      16 |
+|    103 | zip drive        |    250.00 |      14 |
+|    104 | speaker          |    550.00 |      16 |
+|    105 | monitor          |   5000.00 |      11 |
+|    106 | dvd drive        |    900.00 |      12 |
+|    107 | cd drive         |    800.00 |      12 |
+|    108 | printer          |   2600.00 |      13 |
+|    109 | refill cartridge |    350.00 |      13 |
+|    110 | mouse            |    250.00 |      12 |
++--------+------------------+-----------+---------+
+
+select pro_id, pro_name,pro_price,pro_com  from item1 where pro_price >= 200 and pro_price <= 600;
++--------+------------------+-----------+---------+
+| pro_id | pro_name         | pro_price | pro_com |
++--------+------------------+-----------+---------+
+|    102 | key board        |    450.00 |      16 |
+|    103 | zip drive        |    250.00 |      14 |
+|    104 | speaker          |    550.00 |      16 |
+|    109 | refill cartridge |    350.00 |      13 |
+|    110 | mouse            |    250.00 |      12 |
++--------+------------------+-----------+---------+
+
+SELECT AVG(PRO_PRICE) AS av
+    -> FROM item1
+    -> WHERE PRO_COM = 16;
++------------+
+| av         |
++------------+
+| 500.000000 |
++------------+
+
+ALTER TABLE item1
+-> CHANGE pro_name item_name VARCHAR(50);
+
+ALTER TABLE item1
+-> CHANGE pro_price price_in_Rs decimal(10,2);
+
+select * from item1;
++--------+------------------+-------------+---------+
+| pro_id | item_name        | price_in_Rs | pro_com |
++--------+------------------+-------------+---------+
+|    101 | mother board     |     3200.00 |      15 |
+|    102 | key board        |      450.00 |      16 |
+|    103 | zip drive        |      250.00 |      14 |
+|    104 | speaker          |      550.00 |      16 |
+|    105 | monitor          |     5000.00 |      11 |
+|    106 | dvd drive        |      900.00 |      12 |
+|    107 | cd drive         |      800.00 |      12 |
+|    108 | printer          |     2600.00 |      13 |
+|    109 | refill cartridge |      350.00 |      13 |
+|    110 | mouse            |      250.00 |      12 |
++--------+------------------+-------------+---------+
+
+select item_name , price_in_Rs from item1 order by price_in_Rs desc and item_name asc;
+
++------------------+-------------+
+| item_name        | price_in_Rs |
++------------------+-------------+
+| monitor          |     5000.00 |
+| mother board     |     3200.00 |
+| printer          |     2600.00 |
+| dvd drive        |      900.00 |
+| cd drive         |      800.00 |
+| speaker          |      550.00 |
+| key board        |      450.00 |
+| refill cartridge |      350.00 |
+| mouse            |      250.00 |
+| zip drive        |      250.00 |
++------------------+-------------+
+
+SELECT PRO_COM AS company_code,
+    ->        AVG(price_in_Rs) AS average_price
+    -> FROM item1
+    -> GROUP BY PRO_COM;
++--------------+---------------+
+| company_code | average_price |
++--------------+---------------+
+|           15 |   3200.000000 |
+|           16 |    500.000000 |
+|           14 |    250.000000 |
+|           11 |   5000.000000 |
+|           12 |    650.000000 |
+|           13 |   1475.000000 |
++--------------+---------------+
