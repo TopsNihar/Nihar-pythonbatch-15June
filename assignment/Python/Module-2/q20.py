@@ -1,10 +1,8 @@
-def long_len(words):
-    if not words:
-        return 0
+string = "this is python batch"
+words = string.split()
+big= 0
+for i in words :
+    if len(i) > big :
+        big = len(i)
+print(big)
     
-    max_len = max(len(word) for word in words)
-    return max_len
-
-word_list=["apple","banna","chiku","cherry"]
-leng = long_len(word_list)
-print("long length is :",leng)

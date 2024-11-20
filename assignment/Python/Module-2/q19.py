@@ -1,10 +1,11 @@
-input_string = input("enter the string :")
+str = input("Enter a string: ")
 
-not_index = input_string.find('not')
-poor_index = input_string.find('poor')
-
-if not_index != -1 and poor_index != -1 and not_index < poor_index :
-    result_string = input_string[:not_index] + 'good' + input_string[poor_index + len('poor'):]
+find1 = str.find("not")
+find2 = str.find("poor")
+    
+if find1 != -1 and find2 != -1 and find1 < find2:
+    result = str[:find1] + 'good' + str[find2 + 4:]
 else:
-    result_string = input_string
-print("resluting string :",result_string)
+    result = str
+
+print("string:", result)
